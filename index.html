@@ -187,6 +187,18 @@
       transform: translateX(-50%) scale(1);
       pointer-events: none;
 }
+    #preloader-text {
+  color: transparent; /* Keep if you're using background-clip/text effects */
+}
+    .us-text {
+  color: #d02030;
+  -webkit-text-stroke: 2px white;
+}
+
+.open-text {
+  color: #093b60;
+  -webkit-text-stroke: 2px white;
+}
 
     @keyframes reveal {
       80% {
@@ -230,7 +242,10 @@
 
   
   <div id="preloader">
-    <div id="preloader-text">US OPEN</div>
+    <div id="preloader-text">
+        <span class="us-text">US</span>
+        <span class="open-text">OPEN</span>
+    </div>
   </div>
 
   <div id="install-banner">
