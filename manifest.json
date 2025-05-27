@@ -1,6 +1,6 @@
 {
-    "name": "Bobcat PGA",
-    "short_name": "Bobcat PGA",
+    "name": "Bobcat Cup",
+    "short_name": "Bobcat Cup",
     "start_url": "index.html",
     "scope": "./",
     "display": "standalone",
