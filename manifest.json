@@ -1,6 +1,6 @@
 {
-    "name": "Bobcat PGA Majors",
-    "short_name": "Bobcat PGA Majors",
+    "name": "Bobcat PGA",
+    "short_name": "Bobcat PGA",
     "start_url": "index.html",
     "scope": "./",
     "display": "standalone",
