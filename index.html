@@ -467,7 +467,12 @@ resizeIframe();
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
+  // gtag('config', 'G-PHB8BGN1LW');
+    try {
   gtag('config', 'G-PHB8BGN1LW');
+} catch (e) {
+  console.error('Google Analytics error:', e);
+}
    
   </script>
 </body>
