@@ -355,6 +355,19 @@
     </div> -->
   </div>
 
+  <script>
+    // Filter out permissions policy warnings
+    (function() {
+      const originalWarn = console.warn;
+      console.warn = function(message, ...args) {
+        if (typeof message === 'string' && message.includes('Potential permissions policy violation')) {
+          return; // Suppress these specific warnings
+        }
+        originalWarn.apply(console, [message, ...args]);
+      };
+    })();
+  </script>
+
 <iframe
   src="https://script.google.com/macros/s/AKfycbx042bk5gtZEcJMaRohaFEzOjlUjB089o8FhxqBXLxmzPZi8W7Va_wYuC8seJgfxIt2/exec"
   frameborder="0"
