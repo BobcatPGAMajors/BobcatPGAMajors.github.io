@@ -321,10 +321,21 @@
     }
 
   </style>
-
-<body>
-
   
+  <script>
+    // Filter out permissions policy warnings
+    (function() {
+      const originalWarn = console.warn;
+      console.warn = function(message, ...args) {
+        if (typeof message === 'string' && message.includes('Potential permissions policy violation')) {
+          return; // Suppress these specific warnings
+        }
+        originalWarn.apply(console, [message, ...args]);
+      };
+    })();
+  </script>
+  
+<body>
   <div id="preloader">
 <!--     <div id="preloader-text">
       <span class="top-text">125th</span>
@@ -354,19 +365,6 @@
         <button id="ios-install-dismiss" style="background: #ff4500;border: none;color: white; padding: 5px 12px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 4px;">Dismiss</button>
     </div> -->
   </div>
-
-  <script>
-    // Filter out permissions policy warnings
-    (function() {
-      const originalWarn = console.warn;
-      console.warn = function(message, ...args) {
-        if (typeof message === 'string' && message.includes('Potential permissions policy violation')) {
-          return; // Suppress these specific warnings
-        }
-        originalWarn.apply(console, [message, ...args]);
-      };
-    })();
-  </script>
 
 <iframe
   src="https://script.google.com/macros/s/AKfycbx042bk5gtZEcJMaRohaFEzOjlUjB089o8FhxqBXLxmzPZi8W7Va_wYuC8seJgfxIt2/exec"
