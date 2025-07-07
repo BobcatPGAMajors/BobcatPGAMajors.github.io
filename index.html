@@ -491,6 +491,18 @@ resizeIframe();
 } catch (e) {
   console.error('Google Analytics error:', e);
 }
+    function () {
+    const originalConsoleError = console.error;
+    console.error = function (...args) {
+      // Check if the message contains a Permissions Policy violation
+      if (args[0] && args[0].includes('[Violation] Potential permissions policy violation')) {
+        // Log as a warning instead
+        console.warn(...args);
+      } else {
+        // Log other errors normally
+        originalConsoleError.apply(console, args);
+      }
+    };
    
   </script>
 </body>
