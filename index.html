@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Bobcat PGA Majors">
@@ -28,7 +28,7 @@
   <style>
     html,
     body {
-      background-color: #f3f3f3;
+      /* background-color: #f3f3f3; */
       margin: 0;
       padding: 0;
       overflow: hidden;
@@ -67,11 +67,12 @@
       display: block;
       overflow: auto;
       position: absolute;
-      top: 0;
+      top: env(safe-area-inset-top, 0px);
       left: 0;
       right: 0;
       bottom: 0;
-       background-color: black;
+      background-color: transparent;
+      overscroll-behavior: none;
     }
 
     #install-banner {
