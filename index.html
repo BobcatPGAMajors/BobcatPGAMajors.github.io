@@ -75,7 +75,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: black;
+      background-color: var(--black-color);
       overscroll-behavior: none;
       /* padding-top: env(safe-area-inset-top, 0px); */
       /* padding-bottom: var(--safe-bottom); */
@@ -90,7 +90,7 @@
       bottom: 20px;
       left: 0;
       right: 0;
-      color: white;
+      color: var(--white-color);
       text-align: center;
       padding: 5px;
       box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
@@ -104,7 +104,7 @@
     #install-banner button {
       background-color: #ff4500;
       border: none;
-      color: white;
+      color: var(--white-color);
       padding: 8px 16px;
       text-align: center;
       text-decoration: none;
@@ -123,7 +123,7 @@
       right: 0;
       transform: translateX(-50%);
       background: rgba(0, 0, 0, 0.85);
-      color: white;
+      color: var(--white-color);
       padding: 5px;
       border-radius: 10px;
       box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
@@ -148,11 +148,11 @@
       top: 2px;
       right: 5px;
       background: #ff4500;
-      border: 1px solid black;
+      border: 1px solid var(--black-color);
       width: 24px;
       height: 24px;
       font-size: 20px;
-      color: white;
+      color: var(--white-color);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -196,7 +196,7 @@
       overflow: hidden;
       background: linear-gradient(to top, #000 3%, rgba(0, 0, 0, 0.8) 5%, rgba(0, 0, 0, 0) 7%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 90%, #000 99%),
         url(https://cf-images.us-east-1.prod.boltdns.net/v1/static/1918791248001/72ba1096-720f-4672-ab3d-6db20aa18c77/5ac371e2-e487-4a48-8009-7755f3b6ecae/1280x720/match/image.jpg);
-      color: white;
+      color: var(--white-color);
       padding: 0px;
       background-attachment: fixed;
       background-repeat: round;
@@ -245,7 +245,7 @@
   color: transparent;
 } */
     .top-text{
-      color: white;
+      color: var(--white-color);
       -webkit-text-stroke: 4px #093b60;      
     }
     .us-text,
@@ -264,10 +264,11 @@
       color: var(--players-theme-bg);
       letter-spacing: -5px;
       font-size: 65px;
+      text-shadow: 1px 2px 5px var(--white-color);
     }
     
   .course-text {
-    color: white;
+    color: var(--white-color);
     font-size: 25px;
     /* font-weight: 200; */
     /* width: 100%;
@@ -314,7 +315,7 @@
     align-items: center;
     z-index: 9999;
     overflow: hidden;
-    color: white;
+    color: var(--white-color);
     padding: 0px;
         background: var(--players-theme-bg);
         background-attachment: fixed;
@@ -335,7 +336,7 @@
         -webkit-text-stroke: 3px #093b60;
       }
 .course-text {
-    color: white;
+    color: var(--white-color);
     font-size: 14px;
     font-weight: normal;
     width: 100%;
@@ -377,7 +378,7 @@
     <p class="install-details">2. Select 'Add to Home Screen' <img src="https://raw.githubusercontent.com/BobcatPGAMajors/BobcatPGAMajors.github.io/refs/heads/main/HomeScreenpng.png" alt="Share icon" class="install-icon"></p>
     <p class="install-details">3. Click 'Add'</p>
     <!-- <div style="display: flex; justify-content: flex-end; margin-top: 0px;">
-        <button id="ios-install-dismiss" style="background: #ff4500;border: none;color: white; padding: 5px 12px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 4px;">Dismiss</button>
+        <button id="ios-install-dismiss" style="background: #ff4500;border: none;color: var(--white-color); padding: 5px 12px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 4px;">Dismiss</button>
     </div> -->
   </div>
 
