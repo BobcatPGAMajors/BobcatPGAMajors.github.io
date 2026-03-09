@@ -25,6 +25,15 @@
   <title>Bobcat Cup</title>
   
   <style>
+    :root {
+      --players-theme-bg: #003361;
+      --masters-theme-bg: #003525;
+      --pga-theme-bg: #001f5f;
+      --usopen-theme-bg: #093b60;
+      --theopen-theme-bg: #04051b;
+      --white-color: #fff;
+      --black-color: #000;
+    }
     html,
     body {
       /* background-color: var(--header-color); */
@@ -242,6 +251,11 @@
 .open-text {
   color: #093b60;
 }
+    .players-text {
+      color: var(--players-theme-bg);
+      letter-spacing: -5px;
+    }
+    
   .course-text {
     color: white;
     font-size: 25px;
@@ -303,10 +317,10 @@
     }
       #preloader-text{
         padding-bottom: 10%;
-                font-size: 5em;
+                font-size: 4em;
       }
       .top-text {
-            -webkit-text-stroke: 3px #093b60;
+        -webkit-text-stroke: 3px #093b60;
       }
 .course-text {
     color: white;
@@ -328,7 +342,8 @@
     <div id="preloader-text">
       <!-- <span class="top-text">125th</span>
        </br> -->
-        <span class="us-text">US</span><span class="open-text">The Players</span>
+        <!-- <span class="us-text">US</span><span class="open-text">The Players</span> -->
+       <span class="players-text">The Players</span>
         </br>
         <span class="course-text">TPC Sawgrass • Ponte Vedra Beach, FL • March 12 - 15</span>
     </div>
