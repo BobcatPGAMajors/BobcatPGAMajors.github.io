@@ -506,7 +506,7 @@ function isStandalone() {
     return window.matchMedia('(display-mode: standalone)').matches;
 }
 
-function sendNameToAppsScript(nameToSend) {
+    function sendNameToAppsScript(nameToSend) {
       const scriptUrl = 'https://script.google.com/macros/s/AKfycbxxHL2ekKGC3XAfndR50UGmgcZTTDx7wBTt5nn_DNfe7w6Por8tZGyjnyQJLUrRH7Pw/exec';
       fetch(scriptUrl, {
         method: 'POST',
@@ -523,34 +523,23 @@ function sendNameToAppsScript(nameToSend) {
         .catch(error => { console.error('Error sending name to Apps Script:', error); });
     }
 
-const PGA_ENTRY_NAME_KEY = 'pgaStoredEntryName';
-
-window.addEventListener('message', (event) => {
-  const isGoogleScript =
-    event.origin.endsWith('script.google.com') ||
-    event.origin.endsWith('script.googleusercontent.com');
-
-  if (!isGoogleScript) return;
-
-  const msg = event.data;
-
-  // Apps Script -> GitHub: save name
-  if (msg && msg.type === 'saveEntryName' && msg.value) {
-    localStorage.setItem(PGA_ENTRY_NAME_KEY, String(msg.value));
-    return;
-  }
-
-  // Apps Script -> GitHub: request cached name
-  if (msg && msg.type === 'requestCachedName') {
-    const cached = localStorage.getItem(PGA_ENTRY_NAME_KEY);
-    if (cached) {
-      event.source.postMessage(
-        { type: 'loadCachedName', value: cached },
-        event.origin
-      );
-    }
-  }
-});
+    window.addEventListener('message', (event) => {
+      const isGoogleScript = event.origin.endsWith('script.google.com') || event.origin.endsWith('script.googleusercontent.com');
+      if (!isGoogleScript) { return; }
+      const message = event.data;
+      if (message && message.type === 'saveEntryName' && message.value) {
+        const entryName = message.value;
+        localStorage.setItem('storedEntryName', entryName);
+      } else if (message && message.type === 'requestCachedName') {
+        const cachedName = localStorage.getItem('storedEntryName');
+        if (cachedName) {
+          event.source.postMessage({
+            type: 'loadCachedName',
+            value: cachedName
+          }, event.origin);
+        }
+      }
+    });
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
