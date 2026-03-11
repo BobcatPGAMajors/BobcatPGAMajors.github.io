@@ -506,41 +506,51 @@ function isStandalone() {
     return window.matchMedia('(display-mode: standalone)').matches;
 }
 
-// function resizeIframe() {
-//     var iframe = document.querySelector("iframe");
-//     if (iframe) {
-//         // Debounce the resize to prevent excessive updates
-//         let timeout;
-//         clearTimeout(timeout);
-//         timeout = setTimeout(() => {
-//             // Use screen dimensions as fallback
-//             const height = window.innerHeight || document.documentElement.clientHeight || screen.height;
-//             const width = window.innerWidth || document.documentElement.clientWidth || screen.width;
+function sendNameToAppsScript(nameToSend) {
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbxxHL2ekKGC3XAfndR50UGmgcZTTDx7wBTt5nn_DNfe7w6Por8tZGyjnyQJLUrRH7Pw/exec';
+      fetch(scriptUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'saveEntryName', name: nameToSend }),
+      })
+        .then(response => {
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          return response.json();
+        })
+        .then(data => {
+          if (!data.success) { console.error("Error from Apps Script:", data.message); }
+        })
+        .catch(error => { console.error('Error sending name to Apps Script:', error); });
+    }
 
-//             iframe.style.height = height + "px";
-//             iframe.style.width = width + "px";
+const PGA_ENTRY_NAME_KEY = 'pgaStoredEntryName';
 
-//             // Remove any potential scrollbars
-//             iframe.style.border = "none";
-//             iframe.style.margin = "0";
-//             iframe.style.padding = "0";
-//         }, 100);
-//     }
-// }
+window.addEventListener('message', (event) => {
+  const isGoogleScript =
+    event.origin.endsWith('script.google.com') ||
+    event.origin.endsWith('script.googleusercontent.com');
 
-// Event listeners
-// window.addEventListener("resize", resizeIframe);
-// window.addEventListener("load", resizeIframe);
-// window.addEventListener("orientationchange", resizeIframe);
+  if (!isGoogleScript) return;
 
-// // Media query listener
-// if (window.matchMedia) {
-//     const mediaQuery = window.matchMedia("(orientation: portrait)");
-//     mediaQuery.addEventListener("change", resizeIframe);
-// }
+  const msg = event.data;
 
-// // Initial call
-// resizeIframe();  
+  // Apps Script -> GitHub: save name
+  if (msg && msg.type === 'saveEntryName' && msg.value) {
+    localStorage.setItem(PGA_ENTRY_NAME_KEY, String(msg.value));
+    return;
+  }
+
+  // Apps Script -> GitHub: request cached name
+  if (msg && msg.type === 'requestCachedName') {
+    const cached = localStorage.getItem(PGA_ENTRY_NAME_KEY);
+    if (cached) {
+      event.source.postMessage(
+        { type: 'loadCachedName', value: cached },
+        event.origin
+      );
+    }
+  }
+});
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
