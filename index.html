@@ -594,7 +594,6 @@ function isStandalone() {
 }
 
 function applyThemeColor(eventName) {
-  // Set a data attribute so CSS can react
   document.documentElement.setAttribute("data-event", eventName);
 
   const meta = document.querySelector('meta[name="theme-color"]');
@@ -610,7 +609,7 @@ const EVENT_KEY = "pga-selected-event";
 
 function saveSelectedEvent(eventName) {
   sessionStorage.setItem(EVENT_KEY, eventName);
-  applyThemeColor(eventName);   // ⭐ update meta theme-color immediately
+  applyThemeColor(eventName);
 }
 
 window.addEventListener("message", (event) => {
@@ -626,6 +625,7 @@ window.addEventListener("message", (event) => {
     saveSelectedEvent(msg.value);
   }
 });
+
 </script>
 </body>
 
