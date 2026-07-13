@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="transparent" media="(prefers-color-scheme: dark)>
+  <meta name="theme-color" content="var(--header-color)" media="(prefers-color-scheme: dark)>
   <meta name="apple-mobile-web-app-title" content="Bobcat Cup">
   <meta name="application-name" content="Bobcat Cup">
   <meta name="description" content="Bobcat Cup">
@@ -34,6 +34,30 @@
       --white-color: #fff;
       --black-color: #000;
     }
+
+    :root[data-event="THE PLAYERS Championship"] {
+  --header-color: var(--players-theme-bg);
+}
+
+:root[data-event="Masters Tournament"] {
+  --header-color: var(--masters-theme-bg);
+}
+
+:root[data-event="PGA Championship"] {
+  --header-color: var(--pga-theme-bg);
+}
+
+:root[data-event="U.S. Open"] {
+  --header-color: var(--usopen-theme-bg);
+}
+
+:root[data-event="The Open"] {
+  --header-color: var(--theopen-theme-bg);
+}
+
+:root[data-event="Bobcat Cup"] {
+  --header-color: var(--black-color);
+}
     html,
     body {
       /* background-color: var(--header-color); */
@@ -568,6 +592,40 @@ function isStandalone() {
 } catch (e) {
   console.error('Google Analytics error:', e);
 }
+
+function applyThemeColor(eventName) {
+  // Set a data attribute so CSS can react
+  document.documentElement.setAttribute("data-event", eventName);
+
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) {
+    const cssVar = getComputedStyle(document.documentElement)
+      .getPropertyValue("--header-color")
+      .trim();
+    meta.setAttribute("content", cssVar);
+  }
+}
+
+const EVENT_KEY = "pga-selected-event";
+
+function saveSelectedEvent(eventName) {
+  sessionStorage.setItem(EVENT_KEY, eventName);
+  applyThemeColor(eventName);   // ⭐ update meta theme-color immediately
+}
+
+window.addEventListener("message", (event) => {
+  const isGoogleScript =
+    event.origin.endsWith("script.google.com") ||
+    event.origin.endsWith("script.googleusercontent.com");
+
+  if (!isGoogleScript) return;
+
+  const msg = event.data;
+
+  if (msg?.type === "setSelectedEvent" && msg.value) {
+    saveSelectedEvent(msg.value);
+  }
+});
 </script>
 </body>
 
