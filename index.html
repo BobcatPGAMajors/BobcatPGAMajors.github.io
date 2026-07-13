@@ -2,12 +2,24 @@
 <html lang="en">
 
 <head>
+  <!-- <meta charset="UTF-8"> -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="var(--event-color)" media="(prefers-color-scheme: dark)>
+  <meta name="apple-mobile-web-app-title" content="Bobcat Cup">
+  <meta name="application-name" content="Bobcat Cup">
+  <meta name="description" content="Bobcat Cup"> -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="var(--event-color)" media="(prefers-color-scheme: dark)>
+
+  <!-- IMPORTANT: fixed broken quote -->
+  <meta name="theme-color" content="var(--event-color)" media="(prefers-color-scheme: dark)">
+
   <meta name="apple-mobile-web-app-title" content="Bobcat Cup">
   <meta name="application-name" content="Bobcat Cup">
   <meta name="description" content="Bobcat Cup">
@@ -607,7 +619,7 @@ function isStandalone() {
 // }
 
     function applyThemeColor(eventName) {
-  document.documentElement.setAttribute("data-theme", eventName);
+  document.documentElement.setAttribute("data-event", eventName);
 
   // Update meta theme-color ONLY if it exists
   const meta = document.querySelector('meta[name="theme-color"]');
