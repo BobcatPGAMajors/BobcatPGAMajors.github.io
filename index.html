@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="var(--header-color)" media="(prefers-color-scheme: dark)>
+  <meta name="theme-color" content="var(--event-color)" media="(prefers-color-scheme: dark)>
   <meta name="apple-mobile-web-app-title" content="Bobcat Cup">
   <meta name="application-name" content="Bobcat Cup">
   <meta name="description" content="Bobcat Cup">
@@ -33,30 +33,31 @@
       --theopen-theme-bg: #04051b;
       --white-color: #fff;
       --black-color: #000;
+      --event-color: #04051b;
     }
 
     :root[data-event="THE PLAYERS Championship"] {
-  --header-color: var(--players-theme-bg);
+  --event-color: var(--players-theme-bg);
 }
 
 :root[data-event="Masters Tournament"] {
-  --header-color: var(--masters-theme-bg);
+  --event-color: var(--masters-theme-bg);
 }
 
 :root[data-event="PGA Championship"] {
-  --header-color: var(--pga-theme-bg);
+  --event-color: var(--pga-theme-bg);
 }
 
 :root[data-event="U.S. Open"] {
-  --header-color: var(--usopen-theme-bg);
+  --event-color: var(--usopen-theme-bg);
 }
 
 :root[data-event="The Open"] {
-  --header-color: var(--theopen-theme-bg);
+  --event-color: var(--theopen-theme-bg);
 }
 
 :root[data-event="Bobcat Cup"] {
-  --header-color: var(--black-color);
+  --event-color: var(--black-color);
 }
     html,
     body {
@@ -593,13 +594,26 @@ function isStandalone() {
   console.error('Google Analytics error:', e);
 }
 
-function applyThemeColor(eventName) {
-  document.documentElement.setAttribute("data-event", eventName);
+// function applyThemeColor(eventName) {
+//   document.documentElement.setAttribute("data-event", eventName);
 
+//   const meta = document.querySelector('meta[name="theme-color"]');
+//   if (meta) {
+//     const cssVar = getComputedStyle(document.documentElement)
+//       .getPropertyValue("--header-color")
+//       .trim();
+//     meta.setAttribute("content", cssVar);
+//   }
+// }
+
+    function applyThemeColor(eventName) {
+  document.documentElement.setAttribute("data-theme", eventName);
+
+  // Update meta theme-color ONLY if it exists
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) {
     const cssVar = getComputedStyle(document.documentElement)
-      .getPropertyValue("--header-color")
+      .getPropertyValue("--event-color")
       .trim();
     meta.setAttribute("content", cssVar);
   }
