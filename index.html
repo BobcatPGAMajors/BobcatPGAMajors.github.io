@@ -37,40 +37,40 @@
   <title>Bobcat Cup</title>
   
   <style>
-    :root {
-      --players-theme-bg: #003361;
-      --masters-theme-bg: #003525;
-      --pga-theme-bg: #001f5f;
-      --usopen-theme-bg: #093b60;
-      --theopen-theme-bg: #04051b;
-      --white-color: #fff;
-      --black-color: #000;
-      --event-color: #04051b;
-    }
+  :root {
+    --players-theme-bg: #003361;
+    --masters-theme-bg: #003525;
+    --pga-theme-bg: #001f5f;
+    --usopen-theme-bg: #093b60;
+    --theopen-theme-bg: #04051b;
+    --white-color: #fff;
+    --black-color: #000;
+    --event-color: #04051b;
+  }
 
-    :root[data-event="THE PLAYERS Championship"] {
-  --event-color: #003361;;
-}
+  :root[data-event="THE PLAYERS Championship"] {
+    --event-color: #003361;
+  }
 
-:root[data-event="Masters Tournament"] {
-  --event-color: #003525;
-}
+  :root[data-event="Masters Tournament"] {
+    --event-color: #003525;
+  }
 
-:root[data-event="PGA Championship"] {
-  --event-color:  #001f5f;
-}
+  :root[data-event="PGA Championship"] {
+    --event-color: #001f5f;
+  }
 
-:root[data-event="U.S. Open"] {
-  --event-color: #093b60;
-}
+  :root[data-event="U.S. Open"] {
+    --event-color: #093b60;
+  }
 
-:root[data-event="The Open"] {
-  --event-color: #04051b;
-}
+  :root[data-event="The Open"] {
+    --event-color: #04051b;
+  }
 
-:root[data-event="Bobcat Cup"] {
-  --event-color: #000;
-}
+  :root[data-event="Bobcat Cup"] {
+    --event-color: #000;
+  }
     html,
     body {
       /* background-color: var(--header-color); */
@@ -618,10 +618,12 @@ function isStandalone() {
 //   }
 // }
 
-    function applyThemeColor(eventName) {
-  document.documentElement.setAttribute("data-event", eventName);
+function applyThemeColor(eventName) {
+  const clean = eventName.trim();   // ⭐ remove trailing spaces
 
-  // Update meta theme-color ONLY if it exists
+  document.documentElement.setAttribute("data-event", clean);
+  console.log("Received event:", JSON.stringify(eventName));
+
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) {
     const cssVar = getComputedStyle(document.documentElement)
@@ -629,6 +631,7 @@ function isStandalone() {
       .trim();
     meta.setAttribute("content", cssVar);
   }
+  
 }
 
 const EVENT_KEY = "pga-selected-event";
